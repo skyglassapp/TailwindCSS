@@ -19,10 +19,8 @@ let package = Package(
     ],
     targets: [
         .binaryTarget(
-            name: "tailwindcss",
-            path: "tailwindcss.artifactbundle"
-            // url: "https://foo.com/tailwindcss.artifactbundle.zip",
-            // checksum: ""
+            url: "https://api.github.com/repos/skyglassapp/TailwindCSS/releases/assets/123847309.zip",
+            checksum: "66f46b379b01e983b8334fa2fef9f9c2d3f96bc404ed71c5b65b1d95e25dcdfa"
         ),
         .plugin(
             name: "TailwindCSSBuild",
