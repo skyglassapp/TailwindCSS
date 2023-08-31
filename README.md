@@ -60,7 +60,7 @@ To release a new binary:
 3. Draft a release on GitHub using the [GitHub CLI](https://cli.github.com):
 
     ```bash
-    gh release create <tag> tailwindcss_tag.artifactbundle.zip --title <tag> --generate-notes --draft
+    gh release create <tag> tailwindcss_<tag>.artifactbundle.zip --title <tag> --generate-notes --draft
     ```
 
 4. Copy the last part of the URL of the draft release (untagged-####################).
@@ -73,9 +73,17 @@ To release a new binary:
 
 6. Copy the `apiUrl` value and set it as the `url` value of the binary target in `Package.swift`, appending `.zip`.
 
-7. Commit and tag the repository, and push the commit and tag.
+7. From the root of the Swift package, compute the checksum of the ZIP file:
 
-8. Publish the release:
+   ```bash
+   swift package compute-checksum tailwindcss_<tag>.artifactbundle.zip
+   ```
+   
+8. Copy the checksum and set it as the `checksum` value of the binary target in `Package.swift`.
+
+9. Commit and tag the repository, and push the commit and tag.
+
+10. Publish the release:
 
     ```bash
     gh release edit untagged-#################### --draft=false
