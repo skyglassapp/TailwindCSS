@@ -20,8 +20,8 @@ let package = Package(
     targets: [
         .binaryTarget(
             name: "tailwindcss",
-            url: "https://api.github.com/repos/skyglassapp/TailwindCSS/releases/assets/229000669.zip",
-            checksum: "03851b3cb71ee429390b742b06e2dae9db9a5f329b17729d2b4f21148175a617"
+            url: "https://api.github.com/repos/skyglassapp/TailwindCSS/releases/assets/229008219.zip",
+            checksum: "3721f88ce3f1b42b2f40f531152bab4e6ba39c51cf14bf41674647bd6554d600"
         ),
         .plugin(
             name: "TailwindCSSBuild",

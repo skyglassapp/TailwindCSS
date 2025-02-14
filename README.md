@@ -48,7 +48,7 @@ To release a new binary:
                     },
                     {
                         "path": "tailwindcss-windows-x64.exe",
-                        "supportedTriples": ["x86_64-pc-windows-msvc"]
+                        "supportedTriples": ["x86_64-unknown-windows-msvc"]
                     }
                 ]
             }
