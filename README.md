@@ -68,28 +68,26 @@ To release a new binary:
     gh release create <tag> tailwindcss_<tag>.artifactbundle.zip --title <tag> --generate-notes --draft
     ```
 
-4. Copy the last part of the URL of the draft release (untagged-####################).
-
-5. Get info about the asset:
+4. Get info about the asset:
 
     ```bash
-    gh release view untagged-#################### --json assets
+    gh release view <tag> --json assets
     ```
 
-6. Copy the `apiUrl` value and set it as the `url` value of the binary target in `Package.swift`, appending `.zip`.
+5. Copy the `apiUrl` value and set it as the `url` value of the binary target in `Package.swift`, appending `.zip`.
 
-7. From the root of the Swift package, compute the checksum of the ZIP file:
+6. From the root of the Swift package, compute the checksum of the ZIP file:
 
    ```bash
    swift package compute-checksum tailwindcss_<tag>.artifactbundle.zip
    ```
 
-8. Copy the checksum and set it as the `checksum` value of the binary target in `Package.swift`.
+7. Copy the checksum and set it as the `checksum` value of the binary target in `Package.swift`.
 
-9. Commit and tag the repository, and push the commit and tag.
+8. Commit and tag the repository, and push the commit and tag.
 
-10. Publish the release:
+9. Publish the release:
 
     ```bash
-    gh release edit untagged-#################### --draft=false
+    gh release edit <tag> --draft=false
     ```
