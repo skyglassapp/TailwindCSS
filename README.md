@@ -56,37 +56,44 @@ To release a new binary:
     }
     ```
 
-2. Compress it into a ZIP file:
+2. Make sure Unix executables have their executable bit set:
+
+    ```bash
+    chmod +x tailwindcss.artifactbundle/tailwindcss-linux-x64
+    chmod +x tailwindcss.artifactbundle/tailwindcss-macos-arm64
+    ```
+
+3. Compress the artifact bundle into a ZIP file:
 
     ```bash
     zip -r tailwindcss_<tag>.artifactbundle.zip tailwindcss.artifactbundle
     ```
 
-3. Draft a release on GitHub using the [GitHub CLI](https://cli.github.com):
+4. Draft a release on GitHub using the [GitHub CLI](https://cli.github.com):
 
     ```bash
     gh release create <tag> tailwindcss_<tag>.artifactbundle.zip --title <tag> --generate-notes --draft
     ```
 
-4. Get info about the asset:
+5. Get info about the asset:
 
     ```bash
     gh release view <tag> --json assets
     ```
 
-5. Copy the `apiUrl` value and set it as the `url` value of the binary target in `Package.swift`, appending `.zip`.
+6. Copy the `apiUrl` value and set it as the `url` value of the binary target in `Package.swift`, appending `.zip`.
 
-6. From the root of the Swift package, compute the checksum of the ZIP file:
+7. From the root of the Swift package, compute the checksum of the ZIP file:
 
    ```bash
    swift package compute-checksum tailwindcss_<tag>.artifactbundle.zip
    ```
 
-7. Copy the checksum and set it as the `checksum` value of the binary target in `Package.swift`.
+8. Copy the checksum and set it as the `checksum` value of the binary target in `Package.swift`.
 
-8. Commit and tag the repository, and push the commit and tag.
+9. Commit and tag the repository, and push the commit and tag.
 
-9. Publish the release:
+10. Publish the release:
 
     ```bash
     gh release edit <tag> --draft=false
