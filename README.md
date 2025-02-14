@@ -24,7 +24,8 @@ To release a new binary:
     tailwindcss.artifactbundle/
     ├── info.json
     ├── tailwindcss-linux-x86
-    └── tailwindcss-macos-arm64
+    ├── tailwindcss-macos-arm64
+    └── tailwindcss-windows-x64.exe
     ```
 
     `info.json`
@@ -44,6 +45,10 @@ To release a new binary:
                     {
                         "path": "tailwindcss-linux-x64",
                         "supportedTriples": ["x86_64-unknown-linux-gnu"]
+                    },
+                    {
+                        "path": "tailwindcss-windows-x64.exe",
+                        "supportedTriples": ["x86_64-pc-windows-msvc"]
                     }
                 ]
             }
@@ -78,7 +83,7 @@ To release a new binary:
    ```bash
    swift package compute-checksum tailwindcss_<tag>.artifactbundle.zip
    ```
-   
+
 8. Copy the checksum and set it as the `checksum` value of the binary target in `Package.swift`.
 
 9. Commit and tag the repository, and push the commit and tag.
