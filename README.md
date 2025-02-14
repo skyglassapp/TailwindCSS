@@ -24,7 +24,8 @@ To release a new binary:
     tailwindcss.artifactbundle/
     ├── info.json
     ├── tailwindcss-linux-x86
-    └── tailwindcss-macos-arm64
+    ├── tailwindcss-macos-arm64
+    └── tailwindcss-windows-x64.exe
     ```
 
     `info.json`
@@ -44,6 +45,10 @@ To release a new binary:
                     {
                         "path": "tailwindcss-linux-x64",
                         "supportedTriples": ["x86_64-unknown-linux-gnu"]
+                    },
+                    {
+                        "path": "tailwindcss-windows-x64.exe",
+                        "supportedTriples": ["x86_64-pc-windows-msvc"]
                     }
                 ]
             }
@@ -60,7 +65,7 @@ To release a new binary:
 3. Draft a release on GitHub using the [GitHub CLI](https://cli.github.com):
 
     ```bash
-    gh release create <tag> tailwindcss_tag.artifactbundle.zip --title <tag> --generate-notes --draft
+    gh release create <tag> tailwindcss_<tag>.artifactbundle.zip --title <tag> --generate-notes --draft
     ```
 
 4. Copy the last part of the URL of the draft release (untagged-####################).
@@ -72,6 +77,12 @@ To release a new binary:
     ```
 
 6. Copy the `apiUrl` value and set it as the `url` value of the binary target in `Package.swift`, appending `.zip`.
+
+7. Compute the checksum of the ZIP file and update the `checksum` value of the binary target in `Package.swift`.
+
+    ```bash
+    swift package compute-checksum tailwindcss_<tag>.artifactbundle.zip
+    ```
 
 7. Commit and tag the repository, and push the commit and tag.
 
